@@ -1,1 +1,3 @@
 *.pyc
+test_params_create
+*.json
