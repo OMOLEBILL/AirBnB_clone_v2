@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """This module defines a base class for all models in our hbnb clone"""
 import models
-import uuid
+from uuid import uuid4
 from datetime import datetime
-from sqlalchemy.orm import import declarative_base, sessionmaker
+from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy import Column, String, Integer, create_engine, DateTime
 
 Base = declarative_base()
@@ -19,13 +19,13 @@ class BaseModel:
     """
     
     id = Column(String(60), primary_key = True, nullable = False)
-    created_at = Column(Datetime, nullable = False, default = datetime.utcnow())
-    updated_at = Column(Datetime, nullable = False, default = datetime.utcnow())
+    created_at = Column(DateTime, nullable = False, default = datetime.utcnow())
+    updated_at = Column(DateTime, nullable = False, default = datetime.utcnow())
 
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
         self.id = str(uuid4())
-        self.created_at = self.updated_at = datatime.utcnow()
+        self.created_at = self.updated_at = datetime.utcnow()
         if kwargs:
             # from models import storage
             for key, value in kwargs.items():
@@ -33,7 +33,7 @@ class BaseModel:
                     value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
                 if key != "__class__":
                     setattr(self, key, value)
-"""
+        """
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
@@ -45,10 +45,10 @@ class BaseModel:
                                                      '%Y-%m-%dT%H:%M:%S.%f')
             del kwargs['__class__']
             self.__dict__.update(kwargs)
-"""
+        """
 
     def __str__(self):
-        """Returns a string representation of the instance"""
+        """ Returns a string representation of the instance """
         d = self.__dict__.copy()
         d.pop("_sa_instance_state", None)
         # cls = (str(type(self)).split('.')[-1]).split('\'')[0]

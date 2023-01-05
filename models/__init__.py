@@ -8,7 +8,7 @@
 from os import getenv
 
 if getenv("HBNB_TYPE_STORAGE") == "db":
-    from models.egine.db_storage import DBStorage
+    from models.engine.db_storage import DBStorage
     storage = DBStorage()
     
 else:

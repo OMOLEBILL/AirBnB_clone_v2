@@ -14,7 +14,7 @@ class State(BaseModel, Base):
     cities = relationship("City", backref="state", cascade="delete")
     
     """ Give the file storage its meaning """
-    if getenv(HBNB_TYPE_STORAGE) != "db":
+    if getenv("HBNB_TYPE_STORAGE") != "db":
         @property
         def cities(self):
             """ Get the list of all City objects """
