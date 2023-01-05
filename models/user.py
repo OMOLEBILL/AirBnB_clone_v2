@@ -12,6 +12,7 @@ class User(BaseModel, Base):
     first_name: the name of the user
     last_name: the last name of the user
     """
+
     __tablename__ = "users"
     email = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)
