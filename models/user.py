@@ -1,23 +1,31 @@
 #!/usr/bin/python3
-"""This module defines a class User"""
+"""This module defines a class User
+    - Create a relationship of Place class to user
+    - Create a relationship of Review class to user too.
+"""
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
+from sqlalchemy import create_engine, Column, Integer, String
+from os import environ
+
+storage_engine = environ.get("HBNB_TYPE_STORAGE")
 
 
 class User(BaseModel, Base):
     """
-    This class defines a user by various attributes
-    email: the email of user
-    password: the password of the user
-    first_name: the name of the user
-    last_name: the last name of the user
+        User class for the user
+        User class for the user
     """
-
-    __tablename__ = "users"
-    email = Column(String(128), nullable=False)
-    password = Column(String(128), nullable=False)
-    first_name = Column(String(128), nullable=False)
-    last_name = Column(String(128), nullable=False)
-    places = relationship("Place", cascade="all, delete",
-                           backref="user")
+    if (storage_engine == 'db'):
+        __tablename__ = "users"
+        email = Column(String(128), nullable=False)
+        password = Column(String(128), nullable=False)
+        first_name = Column(String(128), nullable=True)
+        last_name = Column(String(128), nullable=True)
+        places = relationship("Place", backref="user")
+        reviews = relationship("Review", backref="user")
+    else:
+        email = ""
+        password = ""
+        first_name = ""
+        last_name = ""
