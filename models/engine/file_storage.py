@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""This module defines a class to manage file storage for hbnb clone"""
+"""
+This is the main file storage for the clone
+"""
 import json
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -51,10 +53,10 @@ class FileStorage:
 
     def delete(self, obj=None):
         """to delete obj from __objects if it's inside"""
-        D = FileStorage.__objects
-        ob = f"{type(obj).__name__}.{obj.id}"
-        if ob in self.__objects:
-            del self.__objects[ob]
+        if obj is not None:
+            ob = f"{type(obj).__name__}.{obj.id}"
+            if ob in self.__objects:
+                del self.__objects[ob]
 
     def close(self):
         """deserializing the JSON file to objects
