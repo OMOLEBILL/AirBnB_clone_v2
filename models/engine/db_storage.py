@@ -69,13 +69,13 @@ class DBStorage:
         d = {}
         cls = cls if not isinstance(cls, str) else self.__clsdict.get(cls)
         if cls:
-            for obj in self.__session.query(cls):
+            for obj in self.__session.query(cls).all():
                 d["{}.{}".format(
                     cls.__name__, obj.id
                     )] = obj
             return (d)
         for k, cls in self.__clsdict.items():
-            for obj in self.__session.query(cls):
+            for obj in self.__session.query(cls).all():
                 d["{}.{}".format(cls.__name__, obj.id)] = obj
         return (d)
 
