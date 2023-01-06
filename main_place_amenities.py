@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Test link Many-To-Many Place <> Amenity
+""" Test link Many-to-Many Place <> Amenity
 """
 from models import *
 
@@ -11,8 +11,8 @@ state.save()
 city = City(state_id=state.id, name="San Francisco")
 city.save()
 
-# creation of a User
-user = User(email="john@snow.com", password="johnpwd")
+# Creation of a User
+user = User(email="john@snow.com",  password="jonhpwd")
 user.save()
 
 # creation of 2 Places
