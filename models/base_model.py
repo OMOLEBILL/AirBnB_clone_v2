@@ -3,8 +3,8 @@
 import models
 from uuid import uuid4
 from datetime import datetime
-from sqlalchemy.orm import declarative_base, sessionmaker
-from sqlalchemy import Column, String, Integer, create_engine, DateTime
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, String, DateTime
 
 Base = declarative_base()
 
@@ -47,13 +47,6 @@ class BaseModel:
             self.__dict__.update(kwargs)
         """
 
-    def __str__(self):
-        """ Returns a string representation of the instance """
-        d = self.__dict__.copy()
-        d.pop("_sa_instance_state", None)
-        # cls = (str(type(self)).split('.')[-1]).split('\'')[0]
-        return '[{}] ({}) {}'.format(type(self).__name__, self.id, d)
-
     def save(self):
         """Updates updated_at with current time when instance is changed"""
         # from models import storage
@@ -73,3 +66,10 @@ class BaseModel:
     def delete(self):
         """ Delete the current insatnce from the storage """
         models.storage.delete(self)
+        
+    def __str__(self):
+        """ Returns a string representation of the instance """
+        d = self.__dict__.copy()
+        d.pop("_sa_instance_state", None)
+        # cls = (str(type(self)).split('.')[-1]).split('\'')[0]
+        return "[{}] ({}) {}".format(type(self).__name__, self.id, d)

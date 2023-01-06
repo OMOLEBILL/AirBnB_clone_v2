@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Defines the database storage """
 from os import getenv
+import models
 from models.base_model import BaseModel, Base
 from models.amenity import Amenity
 from models.city import City
@@ -45,13 +46,12 @@ class DBStorage:
             objs.extend(self.__session.query(Place).all())
             objs.extend(self.__session.query(Review).all())
             objs.extend(self.__session.query(Amenity).all())
-            
         else:
             if type(cls) == str:
                 cls = eval(cls)
             objs = self.__session.query(cls)
         return {"{}.{}".format(type(ob).__name__, ob.id): ob for ob in objs}
-    
+
     def new(self, obj):
         """ Add the object to the current database session """
         self.__session.add(obj)
