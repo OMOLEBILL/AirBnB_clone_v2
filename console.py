@@ -242,25 +242,21 @@ class HBNBCommand(cmd.Cmd):
         print("[Usage]: destroy <className> <objectId>\n")
 
     def do_all(self, args):
-        """ Prints all string representation of all instances
-        Exceptions:
-            NameError: when there is no object taht has the name
-        """
-        objects = storage.all()
-        my_list = []
-        if not line:
+        """ Shows all objects, or all objects of a class"""
+        objects, my_list = {}, []
+        if not args:
+            objects = storage.all()
             for key in objects:
-                my_list.append(str(objects[key]))
+                my_list.append(objects[key])
             print(my_list)
             return
         try:
-            args = line.split(" ")
-            if args[0] not in type(self).classes:
+            args = args.split(" ")
+            if args[1] not in self.classes.keys():
                 raise NameError()
-            for key in objects:
-                name = key.split('.')
-                if name[0] == args[0]:
-                    my_list.append(str(objects[key]))
+            objects = storage.all(args[0])
+            for k, v in objects.items():
+                my_list.append(v)
             print(my_list)
         except NameError:
             print("** class doesn't exist **")
