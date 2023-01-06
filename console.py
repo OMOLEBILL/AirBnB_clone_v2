@@ -252,7 +252,7 @@ class HBNBCommand(cmd.Cmd):
             return
         try:
             args = args.split(" ")
-            if args[1] not in self.classes.keys():
+            if args[0] not in self.classes.keys():
                 raise NameError()
             objects = storage.all(args[0])
             for k, v in objects.items():
@@ -271,7 +271,7 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._DBStorage__objects.items():
+            for k, v in storage._FileStorage__objects.items():
                 if k.split('.')[0] == args:
                     print_list.append(str(v))
         else:
