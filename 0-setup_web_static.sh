@@ -8,7 +8,7 @@ if ! [ -x "$(command -v nginx)" ]; then
 fi
 
 # Create necessary directories
-sudo mkdir -p /data/web_static/releases/test/
+sudo mkdir -p /data/web_static/releases/test/ /data/web_static/shared/
 
 # Create fake HTML file
 echo "Hello, World!" | sudo tee /data/web_static/releases/test/index.html
