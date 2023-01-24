@@ -41,3 +41,13 @@ def do_deploy(archive_path):
         return True
 
     return False
+
+
+def deploy():
+    """
+    Deploy function do_pack and do_deploy.
+    """
+    path = do_pack()
+    if path:
+        return do_deploy(path)
+    return False
