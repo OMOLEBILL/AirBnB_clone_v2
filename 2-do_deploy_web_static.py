@@ -21,7 +21,7 @@ def do_pack():
 
 def do_deploy(archive_path):
     """ deploys the archive"""
-    if not local("test -e {}".format(archive_path)).succeeded:
+    if not archive_path or not os.path.exists(archive_path):
         return False
     file_name = archive_path.split("/")[-1]
     folder_name = file_name.split(".")[0]
