@@ -12,6 +12,6 @@ def do_pack():
     file_name = "web_static_{}.tgz".format(date_str)
     if not os.path.exists("versions"):
         local("mkdir -p versions")
-    local("tar -cvzf versions/{} AirBnB_clone_v2/web_static".format(file_name))
+    local("tar -cvzf versions/{} web_static".format(file_name))
     return "versions/{}".format(file_name) \
            if local("ls versions/{}".format(file_name)).succeeded else None
