@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 this script starts a Flask web application on the root
-it displays “Hello HBNB!"
+it displays “Hello HBNB!" and display some prompts
 """
 from flask import Flask
 app = Flask(__name__)
@@ -20,10 +20,9 @@ def hbnb():
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def c_text(text):
-    """display “C ” followed by the value of the text variable"""
-    text = text.replace("_", " ")
-    return f"C {text}"
+def c(text):
+    """display C followed by the value of the text variable"""
+    return "C {}".format(text.replace("_", " "))
 
 
 if __name__ == "__main__":
