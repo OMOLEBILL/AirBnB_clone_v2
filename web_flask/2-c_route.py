@@ -3,7 +3,7 @@
 this script starts a Flask web application on the root
 it displays “Hello HBNB!"
 """
-from flask import Flask, escape
+from flask import Flask
 app = Flask(__name__)
 
 
@@ -23,7 +23,7 @@ def hbnb():
 def c_text(text):
     """display “C ” followed by the value of the text variable"""
     text = text.replace("_", " ")
-    return f"C {escape(text)}"
+    return f"C {text}"
 
 
 if __name__ == "__main__":
