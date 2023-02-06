@@ -18,9 +18,6 @@ class State(BaseModel, Base):
     else:
         name = ""
 
-
-    """ Give the file storage its meaning """
-    if getenv("HBNB_TYPE_STORAGE") != "db":
         @property
         def cities(self):
             """ Get the list of all City objects """
