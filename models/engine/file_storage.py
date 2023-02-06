@@ -44,7 +44,7 @@ class FileStorage:
         """Loads storage dictionary from file"""
         try:
             temp = {}
-            with open(self.__file_path, 'r') as f:
+            with open(self.__file_path, 'r', encoding="UTF-8") as f:
                 temp = json.load(f)
                 for key, val in temp.items():
                     self.all()[key] = self.clsdict[val['__class__']](**val)

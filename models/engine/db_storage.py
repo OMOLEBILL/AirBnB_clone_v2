@@ -110,4 +110,4 @@ class DBStorage:
     def close(self):
         """remove current session and roll back all unsaved transactions
         """
-        self.__session.remove()
+        self.__session.close()
