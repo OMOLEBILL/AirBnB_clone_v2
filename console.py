@@ -12,6 +12,7 @@ from models.amenity import Amenity
 from models.review import Review
 import shlex
 
+
 class HBNBCommand(cmd.Cmd):
     """ Contains the functionality for the HBNB console"""
 
@@ -73,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
                 pline = pline[2].strip()  # pline is now str
                 if pline:
                     # check for *args or **kwargs
-                    if pline[0] == '{' and pline[-1] =='}'\
+                    if pline[0] == '{' and pline[-1] == '}'\
                             and type(eval(pline)) is dict:
                         _args = pline
                     else:
@@ -115,17 +116,17 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
 
-        l = args.split()
+        li = args.split()
         if len(args) == 0:
             print("** class name missing **")
             return
-        elif l[0] not in HBNBCommand.classes:
+        elif li[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[l[0]]()
-        if len(l) > 1:
+        new_instance = HBNBCommand.classes[li[0]]()
+        if len(li) > 1:
             D = {}
-            for item in l[1:]:
+            for item in li[1:]:
                 if "=" not in item:
                     return None
                 L1 = item.split("=")
@@ -141,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
                 setattr(new_instance, key, D[key])
         new_instance.save()
         print(new_instance.id)
-       
+
         """ Create an object of any class"""
         """
         if len(args) == 0:
@@ -260,8 +261,7 @@ class HBNBCommand(cmd.Cmd):
             print(my_list)
         except NameError:
             print("** class doesn't exist **")
-   
-        
+
         """ Shows all objects, or all objects of a class"""
         """
         print_list = []
@@ -337,7 +337,7 @@ class HBNBCommand(cmd.Cmd):
                 args.append(v)
         else:  # isolate args
             args = args[2]
-            if args and args[0] =='\"':  # check for quoted arg
+            if args and args[0] == '\"':  # check for quoted arg
                 second_quote = args.find('\"', 1)
                 att_name = args[1:second_quote]
                 args = args[second_quote + 1:]
@@ -384,6 +384,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
